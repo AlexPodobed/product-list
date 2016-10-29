@@ -1,16 +1,28 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from "@angular/forms";
-
-import { AppComponent }  from './app.component';
-import { ProductListComponent } from  './products/product-list.component';
-import {ProductFilterPipe} from "./products/product-filter.pipe";
-import {StarComponent} from "./shared/star.component";
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppComponent}  from './app.component';
+import {HttpModule} from "@angular/http";
+import {WelcomeComponent} from "./home/welcome.component";
+import {RouterModule} from "@angular/router";
+import {ProductModule} from "./products/product.module";
 
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, ProductListComponent, ProductFilterPipe, StarComponent ],
-  bootstrap: [ AppComponent ]
+    imports: [
+        BrowserModule,
+        HttpModule,
+        RouterModule.forRoot([
+            {path: 'welcome', component: WelcomeComponent},
+            {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+            {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+        ]),
+        ProductModule
+    ],
+    declarations: [
+        AppComponent,
+        WelcomeComponent
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
