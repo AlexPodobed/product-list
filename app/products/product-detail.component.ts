@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
         this.pageTitle += `: ${id}`;
 
         this._productService.getProduct(id)
-            .subscribe(product => console.log(product))
+            .subscribe(product => this.product = product)
     }
 
     onBack(): void {

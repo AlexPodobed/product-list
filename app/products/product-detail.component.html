@@ -1,6 +1,27 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" *ngIf="product">
     <div class="panel-heading">
-        {{pageTitle}}
+        Product Details: {{product.productName}}
+    </div>
+
+    <div class="panel-body">
+        <div class="media">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object"
+                         style="width: 164px;"
+                         [src]="product.imageUrl"
+                         [alt]="product.description">
+                </a>
+            </div>
+            <div class="media-body">
+                <h3 class="media-heading">{{product.productName}}</h3>
+                <p><strong>description</strong>: {{product.description}}</p>
+                <p><strong>code</strong>: {{product.productCode}}</p>
+                <p><strong>release date</strong>: {{product.releaseDate}}</p>
+                <p><strong>price</strong>: {{product.price}}</p>
+                <p><ai-star [rating]="product.starRating"></ai-star></p>
+            </div>
+        </div>
     </div>
     <div class="panel-footer">
         <button class="btn btn-default" (click)="onBack()">Back</button>
